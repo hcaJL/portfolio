@@ -100,22 +100,10 @@ dialog .bar{display:flex;justify-content:space-between;align-items:center;gap:12
     <div>
       <h1>林佳蓉<span>Jia-Rong Lin</span></h1>
       <p class="meta">國立政治大學 資訊科學系 四年級 · 指導教授 孫士勝</p>
-      <p class="lead">我的研究聚焦在網路系統與人工智慧的交界：以深度強化學習處理工業物聯網邊緣網路的資源調度與壅塞問題，也做過知識圖譜結合大型語言模型的問答系統。這三條線在大學期間逐漸交會，接下來我想把它們延伸到圖結構資料上的學習方法。</p>
-      <div class="acts">
-        <button class="btn" id="copyMail" type="button">複製 Email</button>
-        <span class="addr" id="mail">112703020@g.nccu.edu.tw</span>
-      </div>
+      <p class="lead">我的研究聚焦在網路系統與人工智慧的交界：以深度強化學習處理工業物聯網邊緣網路的資源調度與壅塞問題，也做過知識圖譜結合大型語言模型的問答系統。接下來我想把這些經驗延伸到圖結構資料上的學習方法。</p>
     </div>
     <img class="photo" src="img/photo.jpg" alt="林佳蓉的照片">
   </div>
-  <div class="figs">
-    <div style="--c:var(--blue)"><strong>4 篇</strong><span>論文發表與投稿，其中 2 篇第一作者</span></div>
-    <div style="--c:var(--red)"><strong>最佳論文獎</strong><span>WASN 2026</span></div>
-    <div style="--c:var(--amber)"><strong>特優</strong><span>政大資工 Agentic AI 競賽</span></div>
-    <div style="--c:var(--green)"><strong>書卷獎</strong><span>114 學年度第二學期</span></div>
-  </div>
-  <div class="map" id="map" role="img" aria-label="研究路線圖：網路系統、深度強化學習、知識圖譜與大型語言模型三條路線，交會於碩士研究"><svg id="mapsvg"></svg></div>
-  <div class="legend"><span><i style="background:var(--blue)"></i>網路系統</span><span><i style="background:var(--red)"></i>深度強化學習</span><span><i style="background:var(--amber)"></i>知識圖譜與大型語言模型</span><span>○ 研究與專案　◎ 交會點</span></div>
 </div></header>
 
 <section class="band" id="research" style="--c:var(--blue)"><div class="wrap">
@@ -222,7 +210,7 @@ dialog .bar{display:flex;justify-content:space-between;align-items:center;gap:12
   </div>
 </div></section>
 
-<footer class="band"><div class="wrap"><span>林佳蓉 · 112703020@g.nccu.edu.tw</span><span>最後更新：2026 年 11 月</span></div></footer>
+<footer class="band"><div class="wrap"><span>林佳蓉 Jia-Rong Lin</span><span>最後更新：2026 年 11 月</span></div></footer>
 
 <dialog id="lb" aria-label="放大圖片"><div class="bar"><span id="lbCap"></span><button class="btn ghost" id="lbClose" type="button">關閉</button></div><img id="lbImg" alt=""></dialog>
 
@@ -239,14 +227,6 @@ dialog .bar{display:flex;justify-content:space-between;align-items:center;gap:12
   const esc = s => String(s).replace(/[&<>"']/g, ch => ({"&":"&amp;","<":"&lt;",">":"&gt;","\"":"&quot;","'":"&#39;"}[ch]));
   document.getElementById("projGrid").innerHTML = projects.map(p => `<article class="card" style="--c:${p.c}"><h3>${esc(p.t)}</h3><p>${esc(p.d)}</p><p class="stack"><b>使用技術</b>　${esc(p.s)}</p>${p.l ? `<p class="links"><a href="${esc(p.l[0])}">${esc(p.l[1])}</a></p>` : ""}</article>`).join("");
 
-  const btn = document.getElementById("copyMail");
-  btn.addEventListener("click", async () => {
-    const addr = document.getElementById("mail").textContent;
-    try { await navigator.clipboard.writeText(addr); btn.textContent = "已複製"; }
-    catch (e) { btn.textContent = "請手動複製右側地址"; }
-    setTimeout(() => { btn.textContent = "複製 Email"; }, 2200);
-  });
-
   const lb = document.getElementById("lb");
   document.querySelectorAll("figure button").forEach(b => b.addEventListener("click", () => {
     document.getElementById("lbImg").src = b.dataset.full;
@@ -257,64 +237,6 @@ dialog .bar{display:flex;justify-content:space-between;align-items:center;gap:12
   document.getElementById("lbClose").addEventListener("click", () => lb.close());
   lb.addEventListener("click", e => { if (e.target === lb) lb.close(); });
 
-  const lines = [
-    {c:"var(--blue)", p:[[0,.17],[.2,.17],[.34,.46],[.92,.46]]},
-    {c:"var(--red)", p:[[0,.54],[.92,.54]]},
-    {c:"var(--amber)", p:[[0,.86],[.6,.86],[.76,.62],[.92,.62]]}
-  ];
-  const stations = [
-    {u:.06, v:[.17], t:"網路與通訊課程", side:-1},
-    {u:.14, v:[.54], t:"國道匝道儀控", side:1},
-    {u:.2, v:[.86], t:"知識圖譜問答系統", side:1},
-    {u:.34, v:[.46,.54], t:"壅塞感知排程（專題）", side:1, x:true},
-    {u:.42, v:[.86], t:"AI 西洋棋即時講評", side:1},
-    {u:.58, v:[.46,.54], t:"NOMA–MEC 延遲最佳化", side:-1, x:true}
-  ];
-  const svg = document.getElementById("mapsvg");
-  const box = document.getElementById("map");
-  const draw = () => {
-    const W = box.clientWidth, H = box.clientHeight;
-    const vert = W < 560;
-    const pad = 28;
-    const P = (u, v) => vert ? [pad + v * Math.min(W * .36, 150), pad + u * (H - 2 * pad)] : [pad + u * (W - 2 * pad), pad + v * (H - 2 * pad)];
-    let s = "";
-    for (const L of lines) {
-      const pts = L.p.map(([u, v]) => P(u, v).join(",")).join(" ");
-      s += `<polyline points="${pts}" fill="none" stroke="${L.c}" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/>`;
-    }
-    const labelX = vert ? pad + Math.min(W * .36, 150) + 28 : 0;
-    for (const st of stations) {
-      if (!st.t) continue;
-      const pts = st.v.map(v => P(st.u, v));
-      if (st.x) {
-        const [a, b] = [pts[0], pts[pts.length - 1]];
-        const x = Math.min(a[0], b[0]) - 11, y = Math.min(a[1], b[1]) - 11;
-        const w = Math.abs(b[0] - a[0]) + 22, h = Math.abs(b[1] - a[1]) + 22;
-        s += `<rect x="${x}" y="${y}" width="${w}" height="${h}" rx="11" fill="var(--panel)" stroke="var(--mute)" stroke-width="3"/>`;
-      } else {
-        s += `<circle cx="${pts[0][0]}" cy="${pts[0][1]}" r="7" fill="var(--panel)" stroke="var(--mute)" stroke-width="3"/>`;
-      }
-      if (vert) {
-        const y = (pts[0][1] + pts[pts.length - 1][1]) / 2;
-        const x0 = Math.max(...pts.map(p => p[0])) + 14;
-        s += `<line x1="${x0}" y1="${y}" x2="${labelX - 6}" y2="${y}" stroke="var(--rule)" stroke-width="2"/>`;
-        s += `<text x="${labelX}" y="${y + 5}">${st.t}</text>`;
-      } else {
-        const x = pts[0][0];
-        const y = st.side < 0 ? Math.min(...pts.map(p => p[1])) - 20 : Math.max(...pts.map(p => p[1])) + 32;
-        s += `<text x="${x}" y="${y}" text-anchor="middle">${st.t}</text>`;
-      }
-    }
-    const [ta, tb] = [P(.95, .42), P(.95, .66)];
-    const tw = vert ? tb[0] - ta[0] + 30 : 34, th = vert ? 34 : tb[1] - ta[1] + 20;
-    const tx = vert ? ta[0] - 15 : ta[0] - 17, ty = vert ? ta[1] - 17 : ta[1] - 10;
-    s += `<rect x="${tx}" y="${ty}" width="${tw}" height="${th}" rx="17" fill="var(--mute)"/>`;
-    if (vert) s += `<text x="${labelX}" y="${ta[1] + 5}" style="font-weight:800">碩士研究</text>`;
-    else s += `<text x="${tx + tw}" y="${ty + th + 28}" text-anchor="end" style="font-weight:800">碩士研究：圖結構 × 網路 AI</text>`;
-    svg.innerHTML = s;
-  };
-  const mapObserver = new ResizeObserver(draw);
-  mapObserver.observe(box);
 }
 </script>
 </body>
