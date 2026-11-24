@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>林佳蓉 Jia-Rong Lin</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;600;800&family=Noto+Sans+TC:wght@400;500;700;900&display=swap" rel="stylesheet">
+<style>
+/* VOICE everyday-academic: a student's research portfolio, calm but confident
+   IDEA a transit map: research threads are metro lines, projects are stations, lines meet at the master's study
+   PICTURE hero metro diagram of her three threads (networks, deep RL, knowledge graph + LLM) converging
+   COLOUR white ground, black ink, line colours blue #0a5cff, red #e6261f, amber #ffb400; night #0e1116
+   TYPE Figtree 800 for Latin display + Noto Sans TC for Chinese text
+   LAYOUT laptop: name and intro on top, map full width beneath; phone: stacked, map turns vertical */
+:root{color-scheme:light dark;--bg:light-dark(#ffffff,#0e1116);--ink:light-dark(#111418,#eef1f5);--mute:light-dark(#5a626e,#a3abb7);--rule:light-dark(#e3e6ea,#262b33);--panel:light-dark(#f5f7fa,#161a21);--blue:#0a5cff;--red:#e6261f;--amber:#ffb400;--green:#00a05a}
+:root[data-theme=light]{color-scheme:light}
+:root[data-theme=dark]{color-scheme:dark}
+*{box-sizing:border-box;min-width:0}
+html{scroll-padding-top:72px}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.7 "Figtree","Noto Sans TC",system-ui,sans-serif;overflow-x:clip}
+a{color:var(--blue)}
+img{max-width:100%;display:block}
+.wrap{max-width:1180px;margin:0 auto}
+.band{padding-block:clamp(28px,4vw,56px);padding-inline:max(5vw,16px)}
+nav{position:sticky;top:0;z-index:5;background:color-mix(in srgb,var(--bg) 92%,transparent);backdrop-filter:blur(8px);border-bottom:1px solid var(--rule)}
+nav .wrap{display:flex;align-items:center;gap:20px;padding:10px max(5vw,16px);flex-wrap:wrap}
+nav b{font-weight:800;font-size:17px}
+nav .links{display:flex;gap:4px;flex-wrap:wrap;margin-left:auto}
+nav .links a{color:var(--ink);text-decoration:none;font-size:15px;padding:8px 10px;border-radius:999px}
+nav .links a:hover,nav .links a:focus-visible{background:var(--panel);outline:none}
+.hero{display:grid;grid-template-columns:minmax(0,1fr) 210px;gap:clamp(20px,4vw,48px);align-items:start}
+.hero h1{font:800 clamp(38px,5vw,52px)/1.05 "Figtree","Noto Sans TC",sans-serif;letter-spacing:-.02em;margin:0 0 6px}
+.hero h1 span{font-weight:600;color:var(--mute);font-size:.55em;letter-spacing:0;margin-left:10px}
+.meta{color:var(--mute);margin:0 0 16px}
+.lead{font-size:17px;max-width:66ch;margin:0 0 20px}
+.photo{width:210px;aspect-ratio:4/5;object-fit:cover;border-radius:18px;border:4px solid var(--ink)}
+.acts{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+.btn{font:600 15px/1 "Figtree","Noto Sans TC",sans-serif;min-height:44px;padding:0 18px;border-radius:999px;border:2px solid var(--ink);background:var(--ink);color:var(--bg);cursor:pointer;display:inline-flex;align-items:center;gap:8px;text-decoration:none}
+.btn.ghost{background:transparent;color:var(--ink)}
+.btn:focus-visible{outline:3px solid var(--blue);outline-offset:2px}
+.addr{font-size:15px;color:var(--mute);white-space:nowrap}
+.figs{display:grid;grid-template-columns:repeat(auto-fit,minmax(10em,1fr));gap:12px;margin-top:28px}
+.figs div{border-top:4px solid var(--c,var(--ink));padding-top:8px}
+.figs strong{display:block;font:800 clamp(24px,3vw,30px)/1.1 "Figtree","Noto Sans TC",sans-serif}
+.figs span{font-size:14px;color:var(--mute)}
+.map{position:relative;height:380px;margin-top:28px;border-radius:20px;background:var(--panel)}
+.map>svg{position:absolute;inset:0;width:100%;height:100%}
+.map text{font:600 14px "Figtree","Noto Sans TC",sans-serif;fill:var(--ink);paint-order:stroke;stroke:var(--panel);stroke-width:5px}
+.legend{display:flex;gap:18px;flex-wrap:wrap;margin-top:12px;font-size:14px;color:var(--mute)}
+.legend i{display:inline-block;width:22px;height:6px;border-radius:3px;vertical-align:middle;margin-right:6px}
+h2{font:800 clamp(30px,3.6vw,40px)/1.05 "Figtree","Noto Sans TC",sans-serif;letter-spacing:-.02em;margin:0 0 6px;display:flex;align-items:center;gap:12px}
+h2::before{content:"";width:22px;height:22px;border-radius:50%;border:6px solid var(--c,var(--ink));background:var(--bg);flex:none}
+.sub{color:var(--mute);margin:0 0 24px}
+h3{font:700 19px/1.4 "Noto Sans TC",sans-serif;margin:0 0 6px}
+.paper{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,1fr);gap:clamp(18px,3vw,36px);padding:24px 0;border-top:1px solid var(--rule)}
+.paper:first-of-type{border-top:0;padding-top:0}
+.en{color:var(--mute);font-size:15px;margin:0 0 8px}
+.auth{font-size:15px;margin:0 0 10px}
+.tags{display:flex;gap:8px;flex-wrap:wrap;margin:0 0 12px}
+.tag{font-size:14px;font-weight:600;padding:3px 12px;border-radius:999px;border:2px solid var(--c,var(--ink));white-space:nowrap}
+.tag.on{background:var(--c);color:#fff}
+.paper p{margin:0 0 10px}
+.paper ul,.card ul{margin:0;padding-left:1.2em}
+figure{margin:0}
+figure button{all:unset;cursor:zoom-in;display:block;border-radius:14px;overflow:hidden;border:1px solid var(--rule);background:#fff}
+figure button:focus-visible{outline:3px solid var(--blue);outline-offset:2px}
+figcaption{font-size:14px;color:var(--mute);margin-top:8px}
+.thumbs{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:12px;margin-top:12px}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,330px),1fr));gap:16px}
+.card{background:var(--panel);border-radius:16px;padding:20px;border-top:6px solid var(--c,var(--ink))}
+.card p{margin:0 0 10px}
+.stack{font-size:14px;color:var(--mute);margin:0 0 10px}
+.stack b{color:var(--ink);font-weight:600}
+.card .links{margin-top:10px;font-size:15px}
+.rows{display:grid;gap:0}
+.row{display:grid;grid-template-columns:9.5em minmax(0,1fr);gap:16px;padding:14px 0;border-top:1px solid var(--rule)}
+.row:first-child{border-top:0}
+.when{font-weight:700;white-space:nowrap;color:var(--mute);font-variant-numeric:tabular-nums}
+.row p{margin:0}
+.two{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:clamp(20px,4vw,48px)}
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.chips span{background:var(--panel);border-radius:999px;padding:4px 14px;font-size:15px}
+footer{border-top:6px solid var(--ink)}
+footer .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;color:var(--mute);font-size:15px}
+dialog{border:0;padding:0;border-radius:16px;max-width:min(92vw,1100px);background:var(--bg);color:var(--ink)}
+dialog::backdrop{background:rgba(10,12,16,.75)}
+dialog img{max-height:80vh;width:auto;margin:auto;background:#fff}
+dialog .bar{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:10px 14px}
+@media(max-width:900px){.paper{grid-template-columns:minmax(0,1fr)}}
+@media(max-width:720px){nav .wrap{flex-wrap:nowrap;gap:12px}nav .links{flex-wrap:nowrap;overflow-x:auto}nav .links a{flex:none}.hero{grid-template-columns:minmax(0,1fr)}.photo{width:150px;order:-1}.two{grid-template-columns:minmax(0,1fr)}.map{height:560px}nav .links{margin-left:0}}
+@media(max-width:600px){.row{grid-template-columns:minmax(0,1fr);gap:2px}}
+</style>
+</head>
+<body>
+<nav aria-label="頁面導覽"><div class="wrap"><b>林佳蓉</b><div class="links"><a href="#research">研究</a><a href="#awards">獲獎</a><a href="#projects">專案</a><a href="#exchange">國際交流</a><a href="#industry">實習</a><a href="#service">教學與活動</a></div></div></nav>
+
+<header class="band"><div class="wrap">
+  <div class="hero">
+    <div>
+      <h1>林佳蓉<span>Jia-Rong Lin</span></h1>
+      <p class="meta">國立政治大學 資訊科學系 四年級 · 指導教授 孫士勝</p>
+      <p class="lead">我的研究聚焦在網路系統與人工智慧的交界：以深度強化學習處理工業物聯網邊緣網路的資源調度與壅塞問題，也做過知識圖譜結合大型語言模型的問答系統。這三條線在大學期間逐漸交會，接下來我想把它們延伸到圖結構資料上的學習方法。</p>
+      <div class="acts">
+        <button class="btn" id="copyMail" type="button">複製 Email</button>
+        <span class="addr" id="mail">112703020@g.nccu.edu.tw</span>
+      </div>
+    </div>
+    <img class="photo" src="img/photo.jpg" alt="林佳蓉的照片">
+  </div>
+  <div class="figs">
+    <div style="--c:var(--blue)"><strong>4 篇</strong><span>論文發表與投稿，其中 2 篇第一作者</span></div>
+    <div style="--c:var(--red)"><strong>最佳論文獎</strong><span>WASN 2026</span></div>
+    <div style="--c:var(--amber)"><strong>特優</strong><span>政大資工 Agentic AI 競賽</span></div>
+    <div style="--c:var(--green)"><strong>書卷獎</strong><span>114 學年度第二學期</span></div>
+  </div>
+  <div class="map" id="map" role="img" aria-label="研究路線圖：網路系統、深度強化學習、知識圖譜與大型語言模型三條路線，交會於碩士研究"><svg id="mapsvg"></svg></div>
+  <div class="legend"><span><i style="background:var(--blue)"></i>網路系統</span><span><i style="background:var(--red)"></i>深度強化學習</span><span><i style="background:var(--amber)"></i>知識圖譜與大型語言模型</span><span>○ 研究與專案　◎ 交會點</span></div>
+</div></header>
+
+<section class="band" id="research" style="--c:var(--blue)"><div class="wrap">
+  <h2>研究</h2>
+  <p class="sub">兩項研究都處理工業物聯網邊緣運算中的延遲與資源配置，但系統假設與方法不同。</p>
+
+  <article class="paper">
+    <div>
+      <h3>突發流量下的工業物聯網服務功能鏈壅塞感知排程</h3>
+      <p class="en">Service Function Chain Scheduling and Congestion Mitigation for the Industrial IoT Edge Networks under Bursty Wireless Uplink Traffic</p>
+      <p class="auth"><b>Jia-Rong Lin</b>, Chin-Yu Wu, Ping-Chih Liu, Shi-Sheng Sun</p>
+      <div class="tags"><span class="tag on" style="--c:var(--blue)">IEEE AIoT 2026 · Accepted</span><span class="tag on" style="--c:var(--red)">WASN 2026 最佳論文獎</span><span class="tag">第一作者</span></div>
+      <p>工業場域中，設備告警可能讓多個裝置同時上傳資料，形成短時間的突發負載。這些請求進入邊緣端後，要依序經過資料前處理、異常偵測等服務階段，各階段共享有限的運算、記憶體與頻寬。</p>
+      <ul>
+        <li>將排程建模為馬可夫決策過程，以 PPO 為各階段佇列輸出競爭分數，再由 Gate Controller 依剩餘資源逐一放行請求。</li>
+        <li>與 FIFO、WFQ、嚴格優先權、期限感知啟發式與漂移加懲罰等方法比較，並比較 PPO、SAC、TD3。</li>
+        <li>以準時完成率為主要指標，分母包含因溢位而丟棄的請求，避免只看延遲而忽略未完成的請求。</li>
+      </ul>
+      <p class="stack" style="margin-top:12px"><b>使用技術</b>　Python、PyTorch、Stable-Baselines3、Gymnasium</p>
+    </div>
+    <div>
+      <figure><button type="button" data-full="img/sfc-arch.jpg" data-cap="工業物聯網邊緣服務功能鏈之整體系統架構"><img src="img/sfc-arch.jpg" alt="工業物聯網邊緣服務功能鏈系統架構圖"></button><figcaption>系統架構：請求經全域緩衝區分派到各服務鏈，由排程器決定各階段放行量。點圖可放大。</figcaption></figure>
+      <div class="thumbs">
+        <figure><button type="button" data-full="img/cert-bestpaper.jpg" data-cap="MC 2026 &amp; WASN 2026 最佳論文獎"><img src="img/cert-bestpaper.jpg" alt="WASN 2026 最佳論文獎證書"></button><figcaption>WASN 2026 最佳論文獎</figcaption></figure>
+      </div>
+    </div>
+  </article>
+
+  <article class="paper">
+    <div>
+      <h3>基於深度強化學習之工業物聯網 NOMA–MEC 端到端延遲最佳化</h3>
+      <p class="auth">Chin-Yu Wu, <b>Jia-Rong Lin</b>, Ping-Chih Liu, Shi-Sheng Sun</p>
+      <div class="tags"><span class="tag" style="--c:var(--blue)">MC 2026</span><span class="tag" style="--c:var(--blue)">IEEE Internet of Things Journal · 審查中</span><span class="tag">第二作者</span></div>
+      <p>在非正交多重接取（NOMA）與行動邊緣運算環境下，聯合決定子通道分配、服務功能放置、CPU 配置與任務卸載比例，以降低端到端延遲與逾時風險。</p>
+    </div>
+    <div>
+      <ul>
+        <li>以 Soft Actor-Critic 學習聯合資源配置策略，並與 TD3、PPO、貪婪法及基因演算法比較決策品質與運算成本。</li>
+        <li>我參與研究討論，檢視實驗設計是否能支持結論，並協助修正實驗與模擬。</li>
+      </ul>
+    </div>
+  </article>
+</div></section>
+
+<section class="band" id="awards" style="--c:var(--red);background:var(--panel)"><div class="wrap">
+  <h2>獲獎</h2>
+  <div class="rows">
+    <div class="row"><span class="when">2026.08</span><p><b>WASN 2026 最佳論文獎</b>　第二十一屆無線、隨意及感測網路研討會</p></div>
+    <div class="row"><span class="when">競賽</span><p><b>政大資工 Agentic AI 競賽 特優</b>　AI Chess Live Commentary Agent</p></div>
+    <div class="row"><span class="when">114-2</span><p><b>書卷獎</b>　系排前 5%</p></div>
+    <div class="row"><span class="when">2026.08</span><p><b>國立政治大學全球 Top 1000 獎助計畫</b>　大阪公立大學短期研究訪問</p></div>
+    <div class="row"><span class="when">系際盃</span><p><b>籃球賽 季軍</b></p></div>
+  </div>
+</div></section>
+
+<section class="band" id="projects" style="--c:var(--amber)"><div class="wrap">
+  <h2>專案</h2>
+  <p class="sub">課程、競賽與自主進行的實作。</p>
+  <div class="grid" id="projGrid"></div>
+</div></section>
+
+<section class="band" id="exchange" style="--c:var(--green);background:var(--panel)"><div class="wrap">
+  <h2>國際交流</h2>
+  <div class="two">
+    <div>
+      <h3>大阪公立大學 短期研究訪問</h3>
+      <p class="stack"><b>2026.08</b>　國立政治大學全球 Top 1000 獎助計畫（團隊組）</p>
+      <p>隨孫士勝老師帶領的 11 人團隊赴日 7 天，主題為「新世代通訊網路下之聯邦式學習」。我以英文進行約 30 分鐘的研究報告並回答現場提問，這是我第一次在國外以英文發表研究。</p>
+    </div>
+    <div>
+      <h3>IEEE AIoT 2026 論文發表</h3>
+      <p class="stack"><b>2026.12</b>　日本神戶</p>
+      <p>將於 IEEE Annual Congress on Artificial Intelligence of Things 以第一作者身分發表服務功能鏈壅塞感知排程的研究。</p>
+    </div>
+  </div>
+</div></section>
+
+<section class="band" id="industry" style="--c:var(--blue)"><div class="wrap">
+  <h2>實習</h2>
+  <p class="sub">貝果科技有限公司　資訊部 資訊助理（高雄）</p>
+  <div class="rows">
+    <div class="row"><span class="when">2025.08</span><p>暑期實習：AI Agent 實作、網頁弱點掃描與壓力測試、成大醫院藥劑部排班系統後端撰寫</p></div>
+    <div class="row"><span class="when">2025.02</span><p>寒假實習：網頁與 Git server 架設</p></div>
+    <div class="row"><span class="when">2024.07–08</span><p>暑期實習：後端學習與實作、架設 MQTT Broker</p></div>
+  </div>
+</div></section>
+
+<section class="band" id="service" style="--c:var(--red);background:var(--panel)"><div class="wrap">
+  <h2>教學與活動</h2>
+  <div class="two">
+    <div>
+      <h3>課程助教　國立政治大學資訊科學系</h3>
+      <div class="rows">
+        <div class="row"><span class="when">2026.09–</span><p>作業系統（孫士勝老師）</p></div>
+        <div class="row"><span class="when">2025.09–</span><p>設計思維與軟體系統專案管理</p></div>
+      </div>
+    </div>
+    <div>
+      <h3>課外活動</h3>
+      <ul style="margin:0 0 16px;padding-left:1.2em"><li>擔任系上宿營活動長</li><li>協助包種茶節、冬令營與夏令營籌辦</li><li>系際盃籃球賽季軍</li></ul>
+      <h3>技能</h3>
+      <div class="chips"><span>Python</span><span>C / C++</span><span>TypeScript / JavaScript</span><span>SQL（PostgreSQL）</span><span>PyTorch</span><span>Stable-Baselines3</span><span>LangGraph</span><span>Neo4j</span><span>Docker</span><span>Linux</span></div>
+    </div>
+  </div>
+</div></section>
+
+<footer class="band"><div class="wrap"><span>林佳蓉 · 112703020@g.nccu.edu.tw</span><span>最後更新：2026 年 11 月</span></div></footer>
+
+<dialog id="lb" aria-label="放大圖片"><div class="bar"><span id="lbCap"></span><button class="btn ghost" id="lbClose" type="button">關閉</button></div><img id="lbImg" alt=""></dialog>
+
+<script>
+{
+  const projects = [
+    {c:"var(--amber)", t:"知識圖譜問答系統", d:"讓大型語言模型回答專業問題時能參考知識圖譜中的相關知識，以減少回答出錯或憑空編造的情況。系統從知識圖譜中找出與問題相關的概念及其關聯，整理成推理路徑後提供給模型參考，再生成回答。", s:"Neo4j、NetworkX、LangChain、Gemini API", l:["https://github.com/chester71206/medical-KG-promping","GitHub"]},
+    {c:"var(--amber)", t:"AI Chess Live Commentary Agent", d:"結合棋局引擎分析與大型語言模型，在棋局進行中即時產生講評，並以非同步流程處理棋局進行與 LLM 生成之間的時間落差。獲政大資工 Agentic AI 競賽特優。", s:"LangGraph、Stockfish、ChromaDB"},
+    {c:"var(--red)", t:"國道匝道儀控最佳化", d:"以國道路段建立交通模擬環境，透過多代理強化學習根據車流狀況調整各匝道的號誌時間，並以平均車速、道路占有率與通行量評估控制效果。", s:"SUMO、Ray RLlib（多代理 PPO）"},
+    {c:"var(--amber)", t:"Echo Learn 多語言語音模仿評分平台", d:"使用者跟讀示範音檔後，系統從音素、韻律與詞彙三個面向比對錄音與示範音檔的相似度，再以人工評分資料訓練的小型神經網路預測 1–5 分的評分。", s:"PyTorch、wav2vec2、Whisper、Praat-Parselmouth、Flask、Next.js", l:["https://github.com/Jason9339/EchoLearn","GitHub"]},
+    {c:"var(--amber)", t:"以六維矩陣提升 LLM 對諷刺語句的判斷能力", d:"從六個語意落差的維度分析中文的言外之意，並以遞迴式的大型語言模型流程判斷語句是否帶有諷刺。", s:"大型語言模型、提示工程"},
+    {c:"var(--blue)", t:"其他系統實作", d:"畢業學分檢核系統：自動檢核修課紀錄與學分是否符合畢業門檻的資料庫系統。另做過揪團媒合平台。", s:"FastAPI、PostgreSQL（畢業學分檢核系統）"}
+  ];
+  const esc = s => String(s).replace(/[&<>"']/g, ch => ({"&":"&amp;","<":"&lt;",">":"&gt;","\"":"&quot;","'":"&#39;"}[ch]));
+  document.getElementById("projGrid").innerHTML = projects.map(p => `<article class="card" style="--c:${p.c}"><h3>${esc(p.t)}</h3><p>${esc(p.d)}</p><p class="stack"><b>使用技術</b>　${esc(p.s)}</p>${p.l ? `<p class="links"><a href="${esc(p.l[0])}">${esc(p.l[1])}</a></p>` : ""}</article>`).join("");
+
+  const btn = document.getElementById("copyMail");
+  btn.addEventListener("click", async () => {
+    const addr = document.getElementById("mail").textContent;
+    try { await navigator.clipboard.writeText(addr); btn.textContent = "已複製"; }
+    catch (e) { btn.textContent = "請手動複製右側地址"; }
+    setTimeout(() => { btn.textContent = "複製 Email"; }, 2200);
+  });
+
+  const lb = document.getElementById("lb");
+  document.querySelectorAll("figure button").forEach(b => b.addEventListener("click", () => {
+    document.getElementById("lbImg").src = b.dataset.full;
+    document.getElementById("lbImg").alt = b.dataset.cap;
+    document.getElementById("lbCap").textContent = b.dataset.cap;
+    if (lb.showModal) lb.showModal();
+  }));
+  document.getElementById("lbClose").addEventListener("click", () => lb.close());
+  lb.addEventListener("click", e => { if (e.target === lb) lb.close(); });
+
+  const lines = [
+    {c:"var(--blue)", p:[[0,.17],[.2,.17],[.34,.46],[.92,.46]]},
+    {c:"var(--red)", p:[[0,.54],[.92,.54]]},
+    {c:"var(--amber)", p:[[0,.86],[.6,.86],[.76,.62],[.92,.62]]}
+  ];
+  const stations = [
+    {u:.06, v:[.17], t:"網路與通訊課程", side:-1},
+    {u:.14, v:[.54], t:"國道匝道儀控", side:1},
+    {u:.2, v:[.86], t:"知識圖譜問答系統", side:1},
+    {u:.34, v:[.46,.54], t:"壅塞感知排程（專題）", side:1, x:true},
+    {u:.42, v:[.86], t:"AI 西洋棋即時講評", side:1},
+    {u:.58, v:[.46,.54], t:"NOMA–MEC 延遲最佳化", side:-1, x:true}
+  ];
+  const svg = document.getElementById("mapsvg");
+  const box = document.getElementById("map");
+  const draw = () => {
+    const W = box.clientWidth, H = box.clientHeight;
+    const vert = W < 560;
+    const pad = 28;
+    const P = (u, v) => vert ? [pad + v * Math.min(W * .36, 150), pad + u * (H - 2 * pad)] : [pad + u * (W - 2 * pad), pad + v * (H - 2 * pad)];
+    let s = "";
+    for (const L of lines) {
+      const pts = L.p.map(([u, v]) => P(u, v).join(",")).join(" ");
+      s += `<polyline points="${pts}" fill="none" stroke="${L.c}" stroke-width="9" stroke-linecap="round" stroke-linejoin="round"/>`;
+    }
+    const labelX = vert ? pad + Math.min(W * .36, 150) + 28 : 0;
+    for (const st of stations) {
+      if (!st.t) continue;
+      const pts = st.v.map(v => P(st.u, v));
+      if (st.x) {
+        const [a, b] = [pts[0], pts[pts.length - 1]];
+        const x = Math.min(a[0], b[0]) - 11, y = Math.min(a[1], b[1]) - 11;
+        const w = Math.abs(b[0] - a[0]) + 22, h = Math.abs(b[1] - a[1]) + 22;
+        s += `<rect x="${x}" y="${y}" width="${w}" height="${h}" rx="11" fill="var(--panel)" stroke="var(--ink)" stroke-width="4"/>`;
+      } else {
+        s += `<circle cx="${pts[0][0]}" cy="${pts[0][1]}" r="8" fill="var(--panel)" stroke="var(--ink)" stroke-width="4"/>`;
+      }
+      if (vert) {
+        const y = (pts[0][1] + pts[pts.length - 1][1]) / 2;
+        const x0 = Math.max(...pts.map(p => p[0])) + 14;
+        s += `<line x1="${x0}" y1="${y}" x2="${labelX - 6}" y2="${y}" stroke="var(--rule)" stroke-width="2"/>`;
+        s += `<text x="${labelX}" y="${y + 5}">${st.t}</text>`;
+      } else {
+        const x = pts[0][0];
+        const y = st.side < 0 ? Math.min(...pts.map(p => p[1])) - 20 : Math.max(...pts.map(p => p[1])) + 32;
+        s += `<text x="${x}" y="${y}" text-anchor="middle">${st.t}</text>`;
+      }
+    }
+    const [ta, tb] = [P(.95, .42), P(.95, .66)];
+    const tw = vert ? tb[0] - ta[0] + 30 : 34, th = vert ? 34 : tb[1] - ta[1] + 20;
+    const tx = vert ? ta[0] - 15 : ta[0] - 17, ty = vert ? ta[1] - 17 : ta[1] - 10;
+    s += `<rect x="${tx}" y="${ty}" width="${tw}" height="${th}" rx="17" fill="var(--ink)"/>`;
+    if (vert) s += `<text x="${labelX}" y="${ta[1] + 5}" style="font-weight:800">碩士研究</text>`;
+    else s += `<text x="${tx + tw}" y="${ty + th + 28}" text-anchor="end" style="font-weight:800">碩士研究：圖結構 × 網路 AI</text>`;
+    svg.innerHTML = s;
+  };
+  const mapObserver = new ResizeObserver(draw);
+  mapObserver.observe(box);
+}
+</script>
+</body>
+</html>
